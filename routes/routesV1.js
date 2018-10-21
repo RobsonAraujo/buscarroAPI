@@ -8,6 +8,7 @@ const authMiddleware = require('../middleware/auth')();
 
 // INSIGHTS
 router.post('/searchcar', authMiddleware.authenticate(), controllers.insightController.searchCar);
+router.get('/callCrowler/:cidade/:estado/:marca/:modelo/:ano', authMiddleware.authenticate(), controllers.insightController.callCrowler);
 
 //PROFILE
 router.post('/saveprofile', authMiddleware.authenticate(), controllers.profileController.saveProfile);
