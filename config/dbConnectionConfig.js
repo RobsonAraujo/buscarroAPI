@@ -1,6 +1,6 @@
 module.exports = {
-    DB_NAME: process.env.DB_NAME || 'buscarro',
-    DB_HOST: process.env.DB_HOST || '127.0.0.1',
-    DB_USER: process.env.DB_USER || 'root',
-    DB_PASSWORD: process.env.DB_PASSWORD || 'root'
+    DB_NAME: process.env.DB_NAME || 'sql7262197',
+    DB_HOST: process.env.DB_HOST || 'sql7.freemysqlhosting.net',
+    DB_USER: process.env.DB_USER || 'sql7262197',
+    DB_PASSWORD: process.env.DB_PASSWORD || 'VmD6sFVlUU'
 }
