@@ -14,7 +14,7 @@ const strategyParams = {
 
 module.exports = function () {
     const strategy = new Strategy(strategyParams, function (payload, next) {
-        return next(null, true)
+        return next(null, true, payload)
     });
 
     passport.use(strategy);

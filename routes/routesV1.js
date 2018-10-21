@@ -7,9 +7,8 @@ const authMiddleware = require('../middleware/auth')();
 
 
 
-//EXAMPLE
-router.get('/example', authMiddleware.authenticate(), controllers.exampleController.listAllbooks);
-router.post('/example', authMiddleware.authenticate(), controllers.exampleController.saveBook);
+//PROFILE
+router.post('/saveprofile', authMiddleware.authenticate(), controllers.profileController.saveProfile);
 
 // USER
 router.post('/login', controllers.userController.login);
