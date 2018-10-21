@@ -6,6 +6,8 @@ const controllers = require('../controllers');
 const authMiddleware = require('../middleware/auth')();
 
 
+// INSIGHTS
+router.post('/searchcar', authMiddleware.authenticate(), controllers.insightController.searchCar);
 
 //PROFILE
 router.post('/saveprofile', authMiddleware.authenticate(), controllers.profileController.saveProfile);
