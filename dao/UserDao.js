@@ -3,10 +3,9 @@ const knex = connectionFactory.knex;
 const security = require('../services/security')
 
 module.exports = {
-    registerUser(name, email, password) {
-
+    registerUser(name, email, password, latitude = null, longitude = null) {
         return security.generateBcryptHash(password).then(passwordHash =>
-            knex('user').insert({ name, email, password: passwordHash })
+            knex('user').insert({ name, email, password: passwordHash, latitude, longitude })
         )
 
     },

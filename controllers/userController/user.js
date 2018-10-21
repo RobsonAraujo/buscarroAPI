@@ -41,7 +41,7 @@ exports.login = function (req, res) {
 
 
 exports.register = function (req, res) {
-    const { name, email, password } = req.body;
+    const { name, email, password , latitude,  longitude} = req.body;
     if (!name || !email || !password) {
         winston.error('register -> body -  *Bad Request - Missing parameters*')
         return res.status(400).json({
@@ -50,7 +50,7 @@ exports.register = function (req, res) {
         })
     }
 
-    return userDao.registerUser(name, email, password)
+    return userDao.registerUser(name, email, password,  latitude,  longitude)
         .then(result => {
             winston.info(`User -> registerUser - *Successfuully new resource is created with id ${result}*`)
             
