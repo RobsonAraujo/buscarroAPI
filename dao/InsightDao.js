@@ -11,8 +11,8 @@ module.exports = {
                 .from('user').where({ id_user })
 
             // Define rules
-            let rules = { car_trunk_l : ``, qtd_occupants: ``, height_adjustment: ``, car_heigh: ``, priceMax: ``, priceMin: `` }
-            rules.car_heigh = 1.6
+            let rules = { car_trunk_l: ``, qtd_occupants: ``, height_adjustment: 0, car_height: ``, priceMax: ``, priceMin: `` }
+            rules.car_height = 1,6
             // Define car trunk 
             const qtd_baggage = userProfile[0].qtd_baggage
 
@@ -37,44 +37,45 @@ module.exports = {
             const userHeight = userProfile[0].height
 
 
-            if (userHeight < 1, 6) {
-                rules.height_adjustment = true
-            } else if (userHeight > 1, 8) {
-                rules.car_height = 1, 8
+            if (userHeight < 1.6) {
+                rules.height_adjustment = 1
+            } else if (userHeight > 1.8) {
+                rules.car_height = 1.8
             }
 
             // define price
             const money_available_level = userProfile[0].money_available_level
-
+          
             if (money_available_level == 1) {
-                rules.priceMin = 0
-                rules.priceMax = 20
+                rules.priceMin = 0.000
+                rules.priceMax = 20.000
             } else if (money_available_level == 2) {
-                rules.priceMin = 21
-                rules.priceMax = 40
+
+                rules.priceMin = 21.000,00
+                rules.priceMax = 40.000,00
             } else if (money_available_level == 3) {
-                rules.priceMin = 41
-                rules.priceMax = 60
-            } if (money_available_level == 4) {
-                rules.priceMin = 51
-                rules.priceMax = 80
+                rules.priceMin = 41.000
+                rules.priceMax = 60.000
+            } else if (money_available_level == 4) {
+                rules.priceMin = 51.000
+                rules.priceMax = 80.000
             } else {
-                rules.priceMin = 80
-                rules.priceMax = 10000000
+                rules.priceMin = 80.000,00
+                rules.priceMax = 10.000000,00
             }
 
             // Define Price 
+            
 
-            const car = knex(`car`)
+            const car = await knex('car')
                 .where('car_trunk_l', '<', rules.car_trunk_l)
-                .andWhere(`qtd_occupantes`, rules.qtd_occupants)
+                .andWhere(`qtd_occupants`, rules.qtd_occupants)
                 .andWhere(`car_height`, `>`, rules.car_height)
                 .andWhere(`price`, `>`, rules.priceMin)
                 .andWhere(`price`, `<`, rules.priceMax)
-
-
-
-            return null
+                .andWhere(`height_adjustment`, rules.height_adjustment)
+                
+            return car
         })()
     }
 
